@@ -1,0 +1,43 @@
+1. Setup Project
+
+cd ~
+mkdir Flormiga
+cd Flormiga
+(copy contents of given flormiga folder to here)
+
+2. Install Puredata:
+
+sudo apt-get install puredata
+
+3. Install python-osc:
+
+pip3 install python-osc
+
+4. To test both Files:
+
+- in a terminal, inside the Flormiga folder, run:
+python3 flormiga.py
+
+- in another terminal, inside the Flormiga folder, run:
+sudo pd -nogui -verbose -open main.pd
+(or run with gui puredata)
+
+5. To start both things on startup:
+
+Copy flormiga_launcher services to /etc/systemd/system/:
+- sudo cp flormiga_launcher_python.service /etc/systemd/system/
+- sudo cp flormiga_launcher_pd.service /etc/systemd/system/
+
+Run the Following Commands:
+
+# TO enable Python Backend
+- sudo systemctl enable flormiga_launcher_python.service
+- sudo systemctl start flormiga_launcher_python.service
+
+# TO enable PD Backend
+- sudo systemctl enable flormiga_launcher_pd.service
+- sudo systemctl start flormiga_launcher_pd.service
+
+After reboot, you can check that it is working with:
+- sudo systemctl status flormiga_launcher_python.service
+- sudo systemctl status flormiga_launcher_pd.service
