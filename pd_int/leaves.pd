@@ -15,7 +15,7 @@
 #X obj 298 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 298 562 outlet;
-#N canvas 830 98 450 300 syrinx 1;
+#N canvas 830 98 450 300 syrinx 0;
 #X obj 93 46 inlet;
 #X floatatom 93 70 5 0 0 0 - - -;
 #X msg 93 93 \$1 600;
@@ -41,7 +41,6 @@
 #X text 11 306 escala os valores;
 #X text 60 330 frequência;
 #X text 318 321 temperatura sobe (env);
-#X obj 844 202 r light beam;
 #X obj 925 300 r laught_env;
 #X obj 844 352 list prepend;
 #X obj 844 226 t b;
@@ -51,6 +50,7 @@
 #X msg 595 386 0.571 500 0.714 800 0 800;
 #X msg 298 342 0.285 200 0.571 250 0.714 500 0.714 1000 0.571 500 0.285
 3000 0 5000;
+#X obj 844 202 r light_beam;
 #X connect 0 0 7 0;
 #X connect 1 0 4 0;
 #X connect 2 0 5 0;
@@ -65,25 +65,25 @@
 #X connect 8 0 17 1;
 #X connect 9 0 7 1;
 #X connect 10 0 13 0;
-#X connect 11 0 33 0;
 #X connect 11 0 32 0;
+#X connect 11 0 31 0;
 #X connect 12 0 19 0;
 #X connect 13 0 18 0;
 #X connect 13 0 17 0;
-#X connect 13 0 33 0;
+#X connect 13 0 32 0;
 #X connect 15 0 16 0;
 #X connect 17 0 15 0;
 #X connect 18 0 9 0;
 #X connect 19 0 20 0;
-#X connect 19 0 32 0;
+#X connect 19 0 31 0;
 #X connect 19 0 17 0;
 #X connect 20 0 9 0;
 #X connect 21 0 14 0;
-#X connect 22 0 33 0;
-#X connect 26 0 29 0;
-#X connect 27 0 28 1;
-#X connect 28 0 31 0;
-#X connect 29 0 28 0;
+#X connect 22 0 32 0;
+#X connect 26 0 27 1;
+#X connect 27 0 30 0;
+#X connect 28 0 27 0;
+#X connect 30 0 21 0;
 #X connect 31 0 21 0;
 #X connect 32 0 21 0;
-#X connect 33 0 21 0;
+#X connect 33 0 28 0;

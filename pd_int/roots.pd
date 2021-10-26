@@ -1,4 +1,4 @@
-#N canvas -8 -8 1920 997 12;
+#N canvas -8 25 1280 747 12;
 #X obj 339 12 r serial_moist_value;
 #X obj 339 37 change;
 #X floatatom 339 71 5 0 0 0 - - -;

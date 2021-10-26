@@ -8,13 +8,13 @@
 ### END INIT INFO
 
 [Unit]
-Description=Button Trigger
+Description=Flormiga PD Patch
 After=multi-user.target
 
 [Service]
 User=pi
 WorkingDirectory=/home/pi/Flormiga/
-ExecStart=sudo /usr/bin/pd -nogui -verbose -open main.pd
+ExecStart=/home/pi/Flormiga/launcher.sh
 Restart=on-failure
 
 [Install]

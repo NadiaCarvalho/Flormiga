@@ -43,7 +43,7 @@ def read_photocell(pin):
 
 BTpin = board.D23
 
-def read_button(pin):
+def read_button_and_switch(pin):
     with DigitalInOut(pin) as btn:
         btn.direction = Direction.INPUT
         btn.pull = Pull.UP
@@ -56,16 +56,6 @@ def read_button(pin):
 # (5) Returns 1 if switch activated and 0 otherwise
 
 SWpin = board.D25
-
-def read_switch(pin):
-    with DigitalInOut(pin) as swt:
-        swt.direction = Direction.INPUT
-        swt.pull = Pull.UP
-
-        if not swt.value:
-            return 1
-        else:
-            return 0
 
 # (6) percentagem ou na verdade basta um sinal (0/1 p.ex) que a bateria está abaixo de 8%
 
@@ -102,10 +92,10 @@ while True:
     photocell = read_photocell(RCpin)
 
     # Voltage (4)
-    button = read_button(BTpin)
+    button = read_button_and_switch(BTpin)
 
     # Voltage (5)
-    switch = read_switch(SWpin)
+    switch = read_button_and_switch(SWpin)
 
     # Battery (6) -> 1: low battery, 0: either pi is plugged or has good battery
     battery_signal = get_battery_percentage()
