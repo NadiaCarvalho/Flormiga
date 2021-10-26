@@ -41,3 +41,6 @@ Run the Following Commands:
 After reboot, you can check that it is working with:
 - sudo systemctl status flormiga_launcher_python.service
 - sudo systemctl status flormiga_launcher_pd.service
+
+And get the results with:
+- journalctl --unit=flormiga_launcher_python.service | tail -n 300

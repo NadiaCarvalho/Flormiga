@@ -48,13 +48,9 @@ def read_button(pin):
         btn.direction = Direction.INPUT
         btn.pull = Pull.UP
 
-        print(btn.value)
-
         if not btn.value:
-            print('down')
             return 1
         else:
-            print('up')
             return 0
 
 # (5) Returns 1 if switch activated and 0 otherwise
@@ -109,7 +105,7 @@ while True:
     button = read_button(BTpin)
 
     # Voltage (5)
-    switch = 0 #read_switch(SWpin)
+    switch = read_switch(SWpin)
 
     # Battery (6) -> 1: low battery, 0: either pi is plugged or has good battery
     battery_signal = get_battery_percentage()
