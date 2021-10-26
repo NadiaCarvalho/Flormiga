@@ -6,7 +6,7 @@ import digitalio
 import busio
 
 from adafruit_seesaw.seesaw import Seesaw
-from digitalio import DigitalInOut, Direction
+from digitalio import DigitalInOut, Direction, Pull
 
 
 # Adafruit  STEMMA  Soil  Sensor :
@@ -19,7 +19,7 @@ soil_sensor = Seesaw(i2c_bus, addr=0x36)
 # Photo-conductive cell:
 # (3) brightness/valor de resistência
 
-RCpin = board.D18
+RCpin = board.D17
 
 def read_photocell(pin):
     with DigitalInOut(pin) as rc:
@@ -39,10 +39,37 @@ def read_photocell(pin):
             reading += 1
         return reading
 
-def analog_voltage(adc):
-    return adc.value / 65535 * adc.reference_voltage
+# (4) Returns 1 if button pressed and 0 otherwise
 
-# (4)(5) voltagem (assumo que receba só 0/1)
+BTpin = board.D23
+
+def read_button(pin):
+    with DigitalInOut(pin) as btn:
+        btn.direction = Direction.INPUT
+        btn.pull = Pull.UP
+
+        print(btn.value)
+
+        if not btn.value:
+            print('down')
+            return 1
+        else:
+            print('up')
+            return 0
+
+# (5) Returns 1 if switch activated and 0 otherwise
+
+SWpin = board.D25
+
+def read_switch(pin):
+    with DigitalInOut(pin) as swt:
+        swt.direction = Direction.INPUT
+        swt.pull = Pull.UP
+
+        if not swt.value:
+            return 1
+        else:
+            return 0
 
 # (6) percentagem ou na verdade basta um sinal (0/1 p.ex) que a bateria está abaixo de 8%
 
@@ -64,7 +91,6 @@ from pythonosc import udp_client
 
 #'IP'
 ip = '127.0.0.1'
-# ip = '192.168.1.2'
 port = 3001
 
 client = udp_client.SimpleUDPClient(ip, port)
@@ -80,24 +106,24 @@ while True:
     photocell = read_photocell(RCpin)
 
     # Voltage (4)
-    volt_1 = 0 # analog_voltage()
+    button = read_button(BTpin)
 
     # Voltage (5)
-    volt_2 = 0 # analog_voltage()
+    switch = 0 #read_switch(SWpin)
 
     # Battery (6) -> 1: low battery, 0: either pi is plugged or has good battery
     battery_signal = get_battery_percentage()
 
     # If you want to see information being sent in the terminal, uncomment the following line
-    print("Info => cap: {}, temp: {}, bright: {}, volt_1: {}, volt_2: {}, bat: {}.".format(
-        str(touch), str(temp), str(photocell), str(volt_1), str(volt_2), str(battery_signal)
+    print("Info => capacitance: {}, temperature: {}, brightness: {}, button: {}, switch: {}, battery: {}.".format(
+        str(touch), str(temp), str(photocell), str(button), str(switch), str(battery_signal)
     ))
 
     client.send_message("/capacitance", touch)
     client.send_message("/temperature", temp)
     client.send_message("/brightness", photocell)
-    client.send_message("/volt_1", volt_1)
-    client.send_message("/volt_2", volt_2)
+    client.send_message("/button", button)
+    client.send_message("/switch", switch)
     client.send_message("/battery", battery_signal)
 
     time.sleep(1)
