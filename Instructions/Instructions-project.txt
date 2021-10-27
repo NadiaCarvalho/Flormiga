@@ -1,13 +1,16 @@
 1. Setup Project
 
+(You can run setup.sh for doing this file's code)
+
 cd ~
-mkdir Flormiga
+git clone https://github.com/NadiaCarvalho/Flormiga.git
 cd Flormiga
-(copy contents of given flormiga folder to here)
 
 2. Install Puredata:
 
 sudo apt-get install puredata
+sudo apt install pd-cyclone
+sudo apt install pd-rtclib
 
 3. Install python-osc:
 
