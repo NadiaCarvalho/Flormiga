@@ -1,4 +1,4 @@
-#N canvas -8 25 1280 747 12;
+#N canvas 0 25 1280 747 12;
 #X obj 43 246 r dia;
 #X obj 26 91 r moisture_reward;
 #X obj 167 91 r sunlight_reward;

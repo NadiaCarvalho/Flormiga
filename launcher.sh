@@ -1,3 +1,1 @@
-#!/bin/bash
-
-amixer -c0 set 'Headphone',0 100% && sudo /usr/bin/pd -nogui -verbose -open main.pd
+sudo /usr/bin/pd -nogui -verbose -open main.pd && sudo shutdown -h now

@@ -19,7 +19,7 @@ soil_sensor = Seesaw(i2c_bus, addr=0x36)
 # Photo-conductive cell:
 # (3) brightness/valor de resistência
 
-RCpin = board.D17
+RCpin = board.D24
 
 def read_photocell(pin):
     with DigitalInOut(pin) as rc:
@@ -72,6 +72,35 @@ def get_battery_percentage():
 
     return 1 if not plugged and percent < 8 else 0
 
+from datetime import datetime
+import os
+
+filename = "data.txt"
+date_format = '%d-%m-%y %H:%M:%S'
+
+def get_time_date_spent():
+    current_date = datetime.now()
+
+    if not os.path.exists(filename):
+        with open(filename, 'w') as file:
+            file.write(current_date.strftime(date_format))
+            file.close()
+        return 0
+
+    time_spent = 0
+    with open(filename, 'r') as file:
+        last_date_str = file.readline()
+        last_date = datetime.strptime(last_date_str, date_format)
+        delta = current_date - last_date
+        time_spent = delta.days
+        file.close()
+
+    return time_spent
+
+def delete_date_file():
+    if os.path.exists(filename):
+        os.remove(filename)
+
 # Setup SEND to pd
 from pythonosc import udp_client
 
@@ -93,6 +122,8 @@ while True:
 
     # Voltage (4)
     button = read_button_and_switch(BTpin)
+    if button == 1:
+        delete_date_file()
 
     # Voltage (5)
     switch = read_button_and_switch(SWpin)
@@ -100,9 +131,11 @@ while True:
     # Battery (6) -> 1: low battery, 0: either pi is plugged or has good battery
     battery_signal = get_battery_percentage()
 
+    time_spent = get_time_date_spent()
+
     # If you want to see information being sent in the terminal, uncomment the following line
-    print("Info => capacitance: {}, temperature: {}, brightness: {}, button: {}, switch: {}, battery: {}.".format(
-        str(touch), str(temp), str(photocell), str(button), str(switch), str(battery_signal)
+    print("Info => capacitance: {}, temperature: {}, brightness: {}, button: {}, switch: {}, battery: {}, time: {}.".format(
+        str(touch), str(temp), str(photocell), str(button), str(switch), str(battery_signal), str(time_spent)
     ))
 
     client.send_message("/capacitance", touch)
@@ -111,5 +144,6 @@ while True:
     client.send_message("/button", button)
     client.send_message("/switch", switch)
     client.send_message("/battery", battery_signal)
+    client.send_message("/time", time_spent)
 
     time.sleep(1)
