@@ -1,7 +1,0 @@
-adafruit-python-shell
-adafruit-circuitpython-bmp280
-adafruit-circuitpython-motor
-adafruit-circuitpython-dotstar
-adafruit-circuitpython-seesaw
-psutil
-python-osc
