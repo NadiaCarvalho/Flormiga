@@ -1,0 +1,21 @@
+### BEGIN INIT INFO
+# Provides:          FLORMIGA PD
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: your description here
+### END INIT INFO
+
+[Unit]
+Description=Flormiga PD Patch
+After=multi-user.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/Flormiga/pd/
+ExecStart=/home/pi/Flormiga/pd/launcher.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
