@@ -1,1 +1,0 @@
-sudo /usr/bin/pd -nogui -verbose -open main.pd && sudo shutdown -h now
