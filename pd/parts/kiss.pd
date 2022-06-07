@@ -1,0 +1,36 @@
+#N canvas 722 165 475 437 12;
+#X obj 46 80 r serial_cap;
+#X obj 291 104 mean-last-x-elems 50;
+#X obj 84 137 expr if($f1 > ($f2 +20) \, 1 \, 0);
+#X obj 46 168 expr if($f2 < 3 \, if($f1 > 2 \, if($f1 < 50 \, 1 \,
+0) \, 0) \, 0);
+#X obj 123 198 r singing;
+#X msg 123 288 0;
+#X msg 161 288 1;
+#X obj 123 317 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 84 340 spigot;
+#X obj 84 364 s kiss;
+#X obj 175 256 loadbang;
+#X obj 20 156 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X floatatom 46 104 5 0 0 0 - - - 0;
+#X obj 161 226 delay 40000;
+#X connect 0 0 12 0;
+#X connect 1 0 2 1;
+#X connect 1 0 3 1;
+#X connect 2 0 8 0;
+#X connect 2 0 11 0;
+#X connect 3 0 8 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 4 0 13 0;
+#X connect 5 0 7 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 1;
+#X connect 8 0 9 0;
+#X connect 10 0 6 0;
+#X connect 12 0 3 0;
+#X connect 12 0 2 0;
+#X connect 12 0 1 0;
+#X connect 13 0 6 0;

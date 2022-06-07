@@ -1,0 +1,74 @@
+#N canvas 355 62 1024 672 12;
+#X obj 91 668 s whistle;
+#X obj 50 32 adc~;
+#X obj 51 163 route 0 1 2, f 45;
+#X obj 51 186 unpack f f;
+#X floatatom 51 212 5 0 0 0 - - -;
+#X floatatom 118 211 5 0 0 0 - - -;
+#X obj 155 185 unpack f f;
+#X floatatom 221 208 5 0 0 0 - - -;
+#X obj 118 297 / 0;
+#X obj 221 231 t b f;
+#X obj 118 322 abs 0;
+#X floatatom 118 345 5 0 0 0 - - -;
+#X obj 119 402 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 172 402 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 119 368 moses 80;
+#X obj 50 61 hip~ 800;
+#X text 88 32 é um assobio?;
+#X obj 51 513 sel 1;
+#X obj 51 539 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 468 357 r temp_val;
+#X obj 51 489 expr if($f1 >= ($f2 - 100) \, if($f1 <= ($f2 + 100) \,
+1 \, 0) \, 0);
+#X obj 91 604 spigot;
+#X obj 173 562 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 172 441 1;
+#X obj 91 628 t b b b;
+#X msg 261 570 0;
+#X obj 467 381 expr if($f1 > 0 \, $f1 \, 1);
+#X obj 51 137 sigmund~ -npeak 2 peaks -hop 16384;
+#X obj 468 405 ../abstracts/scale 1 38 900 2500;
+#X floatatom 468 430 5 0 0 0 - - -;
+#X obj 174 639 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 210 442 delay 30000 1 msec;
+#X connect 1 0 15 0;
+#X connect 2 0 3 0;
+#X connect 2 1 6 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 20 0;
+#X connect 5 0 8 0;
+#X connect 6 1 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 10 0;
+#X connect 9 0 5 0;
+#X connect 9 1 8 1;
+#X connect 10 0 11 0;
+#X connect 11 0 14 0;
+#X connect 13 0 23 0;
+#X connect 14 0 12 0;
+#X connect 14 1 13 0;
+#X connect 15 0 27 0;
+#X connect 17 0 18 0;
+#X connect 18 0 21 0;
+#X connect 19 0 26 0;
+#X connect 20 0 17 0;
+#X connect 21 0 24 0;
+#X connect 22 0 21 1;
+#X connect 23 0 22 0;
+#X connect 24 0 0 0;
+#X connect 24 1 31 0;
+#X connect 24 2 30 0;
+#X connect 25 0 22 0;
+#X connect 26 0 28 0;
+#X connect 27 0 2 0;
+#X connect 28 0 29 0;
+#X connect 29 0 20 1;
+#X connect 30 0 25 0;
+#X connect 31 0 23 0;
