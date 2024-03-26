@@ -7,10 +7,7 @@
 - sudo raspi-config
 - Select expand_roofts to expand root partition to the whole sd card (otherwise the pi will stop on upgrades, as it doesn't have enough space to update)
 - sudo reboot
-
 - sudo apt update && sudo apt upgrade
-- sudo apt-get update && sudo apt-get upgrade
-- sudo reboot
 
 2. Install Python
 
