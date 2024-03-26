@@ -19,8 +19,7 @@
 - cd ~
 - sudo pip3 install --upgrade adafruit-python-shell
 - wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
-- sudo python3 raspi-blinka.py
-- sudo reboot
+- sudo python3 raspi-blinka.py (click on reboot when asked)
 - pip3 install --upgrade adafruit-circuitpython-dotstar adafruit-circuitpython-motor adafruit-circuitpython-bmp280
 
 4. Install Amp
