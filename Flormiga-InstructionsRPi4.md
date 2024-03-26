@@ -26,7 +26,7 @@
 (follow https://learn.adafruit.com/adafruit-max98357-i2s-class-d-mono-amp/raspberry-pi-usage)
 
 - curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
-- sudo reboot
+- (click on reboot when asked)
 - curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
 - sudo nano /boot/config.txt
 - uncomment (remove '#') of 'dtparam=audio=on'
