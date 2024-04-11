@@ -5,8 +5,7 @@
 - use Raspberry Pi Imager to install [PatchboxOS Image](https://blokas.io/patchbox-os/#patchbox-os-download) (go to settings and setup ssh, wifi, etc...)
 
 - sudo raspi-config
-- Select expand_roofts to expand root partition to the whole sd card (otherwise the pi will stop on upgrades, as it doesn't have enough space to update)
-- sudo reboot
+- Select expand_roofts to expand root partition to the whole sd card (otherwise the pi will stop on upgrades, as it doesn't have enough space to update), reboot on asked
 - sudo apt update && sudo apt upgrade
 
 2. Install Python
